@@ -13,13 +13,14 @@ public class Program
             Console.WriteLine();
         Console.Write ($"\t{array[i]}");
     }
+    Console.WriteLine();
     return array;
   }  
   private static void Main()
   {
     Random random = new Random();
     Console.Write("Input number of simbol your array: ");
-    uint number = uint.Parse(Console.ReadLine());
+    uint number = uint.Parse(Console.ReadLine()), counterSuccess = 0, counterFailure = 0;
     int[] myArray = new int[number];
 
     for (int i = 0; i < number; i++)
@@ -27,7 +28,7 @@ public class Program
         myArray[i] = random.Next(-10,10);
     }
     outOfArray(myArray);
-
+ 
     for (int j = 0; j < myArray.Length; j++)
     {
         for (int i = 1, buffer = 0; i < myArray.Length; i++)
@@ -37,13 +38,14 @@ public class Program
                 buffer = myArray[i];
                 myArray[i] = myArray[i-1];
                 myArray[i-1] = buffer;
+                counterSuccess++;
             }
-            /*
-            
-            */
+            else counterFailure++;
         }
     }
     Console.WriteLine();
     outOfArray(myArray);
+    Console.WriteLine($"Count Success: {counterSuccess}");
+    Console.WriteLine($"Count Failure: {counterFailure}");
   }
 }
