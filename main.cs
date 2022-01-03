@@ -23,9 +23,10 @@ public class Program
     uint number = uint.Parse(Console.ReadLine()), counterSuccess = 0, counterFailure = 0;
     int[] myArray = new int[number];
 
-    for (int i = 0; i < number; i++)
-    {
-        myArray[i] = random.Next(-10,10);
+    for (int i = 1; i < myArray.Length; i++)
+    {        
+        while (myArray[i-1] == myArray[i])
+        myArray[i-1] = random.Next(0,10);
     }
     outOfArray(myArray);
  
@@ -46,6 +47,7 @@ public class Program
     Console.WriteLine();
     outOfArray(myArray);
     Console.WriteLine($"Count Success: {counterSuccess}");
-    Console.WriteLine($"Count Failure: {counterFailure}");
+    Console.WriteLine($"Count Failure: {counterFailure}\n");
+    Console.Write($"Input number for search: ");   
   }
 }
